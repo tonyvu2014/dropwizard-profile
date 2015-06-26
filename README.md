@@ -1,3 +1,5 @@
+This is a a sample project which use Dropwizard to create REST APIs.
+
 Instructions to run the profile application:
 
 * Note: The application is configured to create log file and archive log file in /tmp folder, 
