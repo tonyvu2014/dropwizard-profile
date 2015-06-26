@@ -1,0 +1,84 @@
+# Database settings.
+database:
+
+  # the name of your JDBC driver
+  driverClass: org.h2.Driver
+
+  # the username
+  user: sa
+
+  # the password
+  password: D@ff0d1l
+
+  # the JDBC URL
+  url: jdbc:h2:./target/profile
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.H2Dialect
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "SELECT 1"
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+#Logging settings.
+logging:
+
+  level: INFO
+
+  loggers:
+    com.truecaller.profile: INFO
+
+  #Log to console and file 
+  appenders:
+    - type: console
+    - type: file
+      threshold: DEBUG
+      currentLogFilename: /tmp/profile.log
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"      
+      archivedLogFilenamePattern: /tmp/profile-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 5
+      timeZone: UTC
+      
+#Server settings
+server:
+
+  applicationConnectors:
+    - type: http
+      port: 8080
+    - type: https
+      port: 8443
+      keyStorePath: profile.keystore
+      keyStorePassword: 0rch1d
+      validateCerts: false
+    
+  adminConnectors:
+    - type: http
+      port: 8081
+    - type: https
+      port: 8444
+      keyStorePath: profile.keystore
+      keyStorePassword: 0rch1d
+      validateCerts: false
+      
+#Sundial settings for job scheduling
+sundial:
+  thread-pool-size: 10
+  shutdown-on-unload: true
+  wait-on-shutdown: false
+  start-delay-seconds: 0
+  start-scheduler-on-load: true
+  global-lock-on-load: false
+  annotated-jobs-package-name: com.truecaller.profile.job

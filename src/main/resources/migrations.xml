@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	<changeSet id="define_profile_table" author="tonyvu">
+		<createTable tableName="profile">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="username" type="varchar(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="define_visit_table" author="tonyvu">
+		<createTable tableName="visit">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="visitTime" type="datetime">
+				<constraints nullable="false" />
+			</column>
+			<column name="visitorId" type="bigint">
+				<constraints  nullable="false" foreignKeyName="fk_visitor_profile" references="profile(id)"/>
+			</column>
+			<column name="targetId" type="bigint">
+				<constraints  nullable="false" foreignKeyName="fk_target_profile" references="profile(id)"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="define_recent_visit_table" author="tonyvu">
+		<createTable tableName="recentVisit">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="visitTime" type="datetime">
+				<constraints nullable="false" />
+			</column>
+			<column name="visitorId" type="bigint">
+				<constraints  nullable="false" foreignKeyName="fk_recent_visitor_profile" references="profile(id)"/>
+			</column>
+			<column name="targetId" type="bigint">
+				<constraints  nullable="false" foreignKeyName="fk_recent_target_profile" references="profile(id)"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="define_recent_visit_target_profile_index" author="tonyvu">
+	    <createIndex
+	            indexName="idx_target_profile"
+	            tableName="recentVisit"
+	            unique="false">
+	        <column name="targetId" type="bigint"/>
+	    </createIndex>
+	</changeSet>
+</databaseChangeLog>
