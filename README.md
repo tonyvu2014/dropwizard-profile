@@ -1,4 +1,4 @@
-This is a a sample project which use Dropwizard to create REST APIs.
+This is a a sample project which uses Dropwizard to create several REST APIs.
 
 Instructions to run the profile application:
 
