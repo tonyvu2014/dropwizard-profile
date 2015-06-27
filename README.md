@@ -1,4 +1,4 @@
-This is a a sample project which uses Dropwizard to create several REST APIs.
+This is a a sample project which uses Dropwizard to create several REST APIs. There are 4 APIs: Creating a profile, viewing list of profile, viewing another profile and viewing another profile's recent visit history. It demonstrate basic concepts in Dropwizard from setting up, creating database with Hibernate, serializing and deserializing, healthcheck and metrics, unit testing and job scheduling with Sundial.
 
 Instructions to run the profile application:
 
