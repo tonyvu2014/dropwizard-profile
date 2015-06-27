@@ -41,7 +41,7 @@ you have the write access to that folder.
  * Note: The last 2 APIs have the time measure metrics added.
     
  * Note: The app also works with https on port 8443 and the admin portal works with https on port 8444. 
- For the purpose of this assignment, a self-signed certificate is used.
+ For this project, a self-signed certificate is used.
  
 The command mvn package also runs the unit test cases for the 2 APIs: The API to store the views 
 of user profiles and the API to view the users who viewed this user’s profile in the past. There are
