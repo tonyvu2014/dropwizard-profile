@@ -13,6 +13,7 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import java.security.Principal;
+import javax.ws.rs.core.SecurityContext;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.hibernate.SessionFactory;
 import com.google.common.base.Function;
@@ -97,6 +98,7 @@ public class ProfileApplication extends Application<ProfileConfiguration> {
 		AdminAuthenticator adminAuthenticator = new AdminAuthenticator();
 		environment.jersey().register(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User, AdminAuthenticator>()
 							.setAuthenticator(adminAuthenticator)
+							.setSecurityContextFunction(getSecurityContextFunction())
 							.setRealm("SECRET REALM")
 							.buildAuthFilter()));
 		environment.jersey().register(new AuthValueFactoryProvider.Binder<User>(User.class));
@@ -116,34 +118,34 @@ public class ProfileApplication extends Application<ProfileConfiguration> {
 		environment.admin().addTask(new AddJobTask());
 	}
 	
-	// private Function<AuthFilter.Tuple, SecurityContext> getSecurityContextFunction() {
-// 		return new Function<AuthFilter.Tuple, SecurityContext>() {
-// 			@Override
-// 			public SecurityContext apply(final AuthFilter.Tuple input) {
-// 				return new SecurityContext() {
-// 					@Override
-// 					public Principal getUserPrincipal() {
-// 						return input.getPrincipal();
-// 					}
-//
-// 					@Override
-// 					public boolean isUserInRole(String role) {
-// 						return true;
-// 					}
-//
-// 					@Override
-// 					public boolean isSecure() {
-// 						return input.getContainerRequestContext()
-// 								.getSecurityContext().isSecure();
-// 					}
-//
-// 					@Override
-// 					public String getAuthenticationScheme() {
-// 						return SecurityContext.BASIC_AUTH;
-// 					}
-// 				};
-// 			}
-// 		};
-// 	}
+	private Function<AuthFilter.Tuple, SecurityContext> getSecurityContextFunction() {
+		return new Function<AuthFilter.Tuple, SecurityContext>() {
+			@Override
+			public SecurityContext apply(final AuthFilter.Tuple input) {
+				return new SecurityContext() {
+					@Override
+					public Principal getUserPrincipal() {
+						return input.getPrincipal();
+					}
+
+					@Override
+					public boolean isUserInRole(String role) {
+						return true;
+					}
+
+					@Override
+					public boolean isSecure() {
+						return input.getContainerRequestContext()
+								.getSecurityContext().isSecure();
+					}
+
+					@Override
+					public String getAuthenticationScheme() {
+						return SecurityContext.BASIC_AUTH;
+					}
+				};
+			}
+		};
+	}
 
 }
