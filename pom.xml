@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tonyvu</groupId>
 	<artifactId>profile</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Profile</name>
 	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<dropwizard.version>0.9.3</dropwizard.version>
+		<dropwizard.version>0.9.0</dropwizard.version>
 		<h2.version>1.4.187</h2.version>
 		<jersey.version>2.17</jersey.version>
 	</properties>
