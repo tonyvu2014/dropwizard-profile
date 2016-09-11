@@ -1,4 +1,7 @@
-https://api.travis-ci.org/tonyvu2014/dropwizard-profile.svg?branch=master
+### Status
+[![Build Status]](https://api.travis-ci.org/tonyvu2014/dropwizard-profile.svg?branch=master)
+
+
 
 This is a a sample project which uses Dropwizard to create several REST APIs. There are 4 APIs: Creating a profile, viewing list of profile, viewing another profile and viewing another profile's recent visit history. The recent visit history only shows up to 10 last visits and only shows visits which are not more than 10 days old. It demonstrates basic concepts in Dropwizard from setting up, creating database with Hibernate, basic authentication, serializing and deserializing, healthcheck and metrics, unit testing and job scheduling with Sundial. The profile_database.docx explains the rationale behind the database design.
 
