@@ -3,7 +3,7 @@ package com.tonyvu.profile.db;
 import java.util.List;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
-import com.truecaller.profile.core.Visit;
+import com.tonyvu.profile.core.Visit;
 
 public class VisitDAO extends AbstractDAO<Visit> {
 
