@@ -1,5 +1,5 @@
 ### Status
-[![Build Status]](https://api.travis-ci.org/tonyvu2014/dropwizard-profile.svg?branch=master)
+[![Build Status](https://travis-ci.org/tonyvu2014/dropwizard-profile.svg?branch=master)](https://travis-ci.org/tonyvu2014/dropwizard-profile)
 
 
 
