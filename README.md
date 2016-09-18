@@ -4,7 +4,7 @@ Instructions to run the profile application:
 
 * Note: The application is configured to create log file and archive log file in /tmp folder, 
 so please change to folder of your choice in profile.yml configuration file and make sure that 
-you have the write access to that folder. The test is run automatically after a push with Travis CI.
+you have the write access to that folder.
 
 1) From the project root folder, run 
    
